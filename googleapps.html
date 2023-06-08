@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Google Apps Launcher</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                background-color: #2f3136;
+                color: white;
+            }
+            h1 {
+                font-size: 35px;
+                font-weight: bold;
+            }
+            p {
+                font-size: 14px;
+            }
+            .container {
+                width: 1000px;
+                margin: auto;
+            }
+            .header {
+                background-color: #202225;
+                text-align: center;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+            .main {
+                padding-top: 20px;
+                padding-bottom: 50px;
+            }
+            .footer {
+                text-align: center;
+            }
+            .button {
+                background-color: #7289da;
+                color: white;
+                padding: 15px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: bold;
+                position: relative;
+                overflow: hidden;
+            }
+            .button::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(255, 255, 255, 0.2);
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+            }
+            .button:hover::after {
+                opacity: 1;
+            }
+        </style>
+        <script>
+            // Function to update the current date and time
+            function updateDateTime() {
+                var dateElement = document.getElementById("date");
+                var timeElement = document.getElementById("time");
+
+                var currentDate = new Date();
+
+                // Format the date and time as desired
+                var date = currentDate.toDateString();
+                var time = currentDate.toLocaleTimeString();
+
+                // Update the HTML elements with the current date and time
+                dateElement.textContent = "Current Date: " + date;
+                timeElement.textContent = "Current Time: " + time;
+            }
+
+            // Check if the device is a Nintendo 3DS
+            if (navigator.userAgent.indexOf("Nintendo 3DS") > -1) {
+                // Resize the page to fit the Nintendo 3DS screens
+                var viewport = document.querySelector("meta[name=viewport]");
+                viewport.setAttribute("content", "width=device-width, initial-scale=1.0");
+                document.body.style.maxWidth = "320px";
+                document.body.style.margin = "0 auto";
+                var headings = document.querySelectorAll("h1");
+                for (var i = 0; i < headings.length; i++) {
+                    headings[i].style.fontSize = "1.5em";
+                }
+                var paragraphs = document.querySelectorAll("p");
+                for (var i = 0; i < paragraphs.length; i++) {
+                    paragraphs[i].style.fontSize = "0.8em";
+                }
+                var images = document.querySelectorAll("img");
+                for (var i = 0; i < images.length; i++) {
+                    images[i].style.width = "100%";
+                    images[i].style.maxWidth = "320px";
+                }
+            }
+
+            // Update the date and time every second
+            setInterval(updateDateTime, 1000);
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Google Apps Launcher ( Web )</h1>
+                <p id="date">Fetching Current Date...</p>
+                <p id="time">Fetching Current Time...</p>
+            </div>
+            <div class="main">
+                <p>Navigation:</p>
+                <button class="button" onclick="location.reload()">Reload this page.</button>
+                <button class="button" onclick="history.back()">Back</button>
+                <button class="button" onclick="history.forward()">Forward</button>
+                <a href="index.html"><button class="button">Home</button></a>
+                <button class="button" onclick="window.close()">Close This Page.</button>
+                <p>Pages:</p>
+                <a href="https://google.com"><button class="button">New Tab</button></a>
+                <a href="https://mail.google.com"><button class="button">Gmail</button></a>
+                <a href="https://drive.google.com"><button class="button">Google Drive</button></a>
+                <a href="https://docs.google.com"><button class="button">Google Docs</button></a>
+                <a href="https://slides.google.com"><button class="button">Google Slides</button></a>
+                <a href="https://sheets.google.com"><button class="button">Google Sheets</button></a>
+                <a href="https://youtube.com"><button class="button">YouTube</button></a>
+                <a href="https://music.youtube.com"><button class="button">YouTube Music</button></a>
+                <a href="https://maps.google.com"><button class="button">Google Maps</button></a>
+                <a href="https://googlephotos.com"><button class="button">Google Photos</button></a>
+            </div>
+            <div class="footer">
+                <p>Hosted by GitHub.</p>
+            </div>
+        </div>
+    </body>
+</html>
