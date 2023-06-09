@@ -1,128 +1,167 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Home</title>
-        <style>
-            body {
-                font-family: sans-serif;
-                background-color: #2f3136;
-                color: white;
-            }
-            h1 {
-                font-size: 35px;
-                font-weight: bold;
-            }
-            p {
-                font-size: 14px;
-            }
-            .container {
-                width: 1000px;
-                margin: auto;
-            }
-            .header {
-                background-color: #202225;
-                text-align: center;
-                padding-top: 15px;
-                padding-bottom: 15px;
-            }
-            .main {
-                padding-top: 20px;
-                padding-bottom: 50px;
-            }
-            .footer {
-                text-align: center;
-            }
-            .button {
-                background-color: #7289da;
-                color: white;
-                padding: 15px;
-                border-radius: 5px;
-                font-size: 14px;
-                font-weight: bold;
-                position: relative;
-                overflow: hidden;
-            }
-            .button::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(255, 255, 255, 0.2);
-                pointer-events: none;
-                opacity: 0;
-                transition: opacity 0.3s ease-in-out;
-            }
-            .button:hover::after {
-                opacity: 1;
-            }
-        </style>
-        <script>
-            // Function to update the current date and time
-            function updateDateTime() {
-                var dateElement = document.getElementById("date");
-                var timeElement = document.getElementById("time");
+<head>
+  <title>Home</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #2f3136;
+      color: white;
+    }
 
-                var currentDate = new Date();
+    .container {
+      width: 1000px;
+      margin: auto;
+    }
 
-                // Format the date and time as desired
-                var date = currentDate.toDateString();
-                var time = currentDate.toLocaleTimeString();
+    .header {
+      background-color: #202225;
+      text-align: center;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
 
-                // Update the HTML elements with the current date and time
-                dateElement.textContent = "Current Date: " + date;
-                timeElement.textContent = "Current Time: " + time;
-            }
+    .main {
+      padding-top: 20px;
+      padding-bottom: 50px;
+    }
 
-            // Check if the device is a Nintendo 3DS
-            if (navigator.userAgent.indexOf("Nintendo 3DS") > -1) {
-                // Resize the page to fit the Nintendo 3DS screens
-                var viewport = document.querySelector("meta[name=viewport]");
-                viewport.setAttribute("content", "width=device-width, initial-scale=1.0");
-                document.body.style.maxWidth = "320px";
-                document.body.style.margin = "0 auto";
-                var headings = document.querySelectorAll("h1");
-                for (var i = 0; i < headings.length; i++) {
-                    headings[i].style.fontSize = "1.5em";
-                }
-                var paragraphs = document.querySelectorAll("p");
-                for (var i = 0; i < paragraphs.length; i++) {
-                    paragraphs[i].style.fontSize = "0.8em";
-                }
-                var images = document.querySelectorAll("img");
-                for (var i = 0; i < images.length; i++) {
-                    images[i].style.width = "100%";
-                    images[i].style.maxWidth = "320px";
-                }
-            }
+    .footer {
+      text-align: center;
+    }
 
-            // Update the date and time every second
-            setInterval(updateDateTime, 1000);
-        </script>
-    </head>
-        <div class="container">
-            <div class="header">
-                <h1>Home</h1>
-                <p>Welcome to WLHQ's Website on GitHub! This website is more optimized and lightweight than WLHQ's Google Site. Navigation of this website on Fire TV is supported! Just use the navigation buttons on your Fire TV remote and the buttons will highlight on which one is selected.</p>
-                <p id="date">Fetching Current Date...</p>
-                <p id="time">Fetching Current Time...</p>
-            </div>
-            <div class="main">
-                <p>Navigation:</p>
-                <button class="button" onclick="location.reload()">Reload this page.</button>
-                <button class="button" onclick="history.back()">Back</button>
-                <button class="button" onclick="history.forward()">Forward</button>
-                <button class="button" onclick="window.close()">Close This Page.</button>
-                <p>Pages:</p>
-                <a href="googleapps.html"><button class="button">Google Apps Launcher ( Web )</button></a>
-                <a href="games.html"><button class="button">Games</button></a>
-                <a href="onlinenews.html"><button class="button">Online News</button></a>
-                <a href="onlineshopping.html"><button class="button">Online Shopping</button></a>
-                <a href="utilities.html"><button class="button">Utilities</button></a>
-            </div>
-            <div class="footer">
-                <p>Hosted by GitHub.</p>
-            </div>
-        </div>
+    .button {
+      background-color: #3762ff;
+      color: white;
+      padding: 20px;
+      border-radius: 6px;
+      font-size: 20px;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .button:hover::after {
+      opacity: 1;
+    }
+  </style>
+  <script>
+
+    // Check if the device is a Fire TV
+    function isFireTV() {
+        // Check if the user agent contains the term "silk" or "mozilla/5.0 (aft" (for Fire TV Stick)
+        var userAgent = navigator.userAgent.toLowerCase();
+        if (userAgent.indexOf("silk") > -1 || userAgent.indexOf("mozilla/5.0 (aft") > -1) {
+        return true;
+        }
+    
+        // Check if the user agent contains the term "amazonwebappplatform" (for Fire TV web apps)
+        var webAppPlatform = navigator.userAgent.toLowerCase().indexOf("amazonwebappplatform") > -1;
+    
+        // Check if the browser supports the Amazon Web App API (for Fire TV web apps)
+        var isAmazonWebApp = typeof window.amazonwebapps !== "undefined";
+    
+        return webAppPlatform || isAmazonWebApp;
+    }
+    
+    // Usage example
+    if (isFireTV()) {
+        // Code to execute if the user is browsing with a Fire TV device
+        console.log("User is browsing with a Fire TV device");
+        alert('Welcome Fire TV user! You can use your Fire TV Remote to navigate the website using the directional and select buttons. Press OK to continue.')
+    } else {
+        // Code to execute for other devices
+        console.log("User is not browsing with a Fire TV device");
+    }
+
+    // Function to update the current date and time
+    function updateDateTime() {
+      var dateElement = document.getElementById("date");
+      var timeElement = document.getElementById("time");
+
+      var currentDate = new Date();
+
+      // Format the date and time as desired
+      var date = currentDate.toDateString();
+      var time = currentDate.toLocaleTimeString();
+
+      // Update the HTML elements with the current date and time
+      dateElement.textContent = "Current Date: " + date;
+      timeElement.textContent = "Current Time: " + time;
+    }
+
+    // Function to resize the text based on the window width
+    function resizeText() {
+      var screenWidth = window.innerWidth;
+      var scaleFactor = screenWidth / 700; // Adjust this value as needed
+
+      // Apply the scaling factor to the desired elements
+      var headings = document.querySelectorAll("h1");
+      for (var i = 0; i < headings.length; i++) {
+        headings[i].style.fontSize = 35 * scaleFactor + "px";
+      }
+
+      var paragraphs = document.querySelectorAll("p");
+      for (var i = 0; i < paragraphs.length; i++) {
+        paragraphs[i].style.fontSize = 14 * scaleFactor + "px";
+      }
+    }
+
+    // Call the resizeText function on page load and whenever the window is resized
+    window.addEventListener("load", function () {
+      updateDateTime();
+      resizeText();
+    });
+
+    window.addEventListener("resize", resizeText);
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+  </script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Home</h1>
+    <p>Welcome to WLHQ's lightweight website on GitHub!</p>
+    <p id="date">Fetching Current Date...</p>
+    <p id="time">Fetching Current Time...</p>
+  </div>
+  <div class="main">
+    <p>Navigation:</p>
+    <button class="button" onclick="location.reload()">Reload this page.</button>
+    <button class="button" onclick="history.back()">Back</button>
+    <button class="button" onclick="history.forward()">Forward</button>
+    <button class="button" onclick="window.close()">Close This Page.</button>
+    <p>Page Sections:</p>
+    <p>Games:</p>
+    <a href="https://fortnite.gg/"><button class="button">Fortnite.GG</button></a>
+    <a href="https://status.epicgames.com/"><button class="button">Epic Games Status</button></a>
+    <p>Music:</p>
+    <a href="https://youtune.kvnp.eu/"><button class="button">YouTune - Home</button></a>
+    <a href="https://lofimusic.app/lofigirl"><button class="button">Lofi Music</button></a>
+    <p>Utilities:</p>
+    <a href="https://githubstat.us/"><button class="button">GitHub Status</button></a>
+    <p>Screensavers:</p>
+    <a href="https://1j01.github.io/pipes/"><button class="button">Windows 3D Pipes Screensaver</button></a>
+    <a href="https://dvdscreensaver.online/"><button class="button">DVD Screensaver</button></a>
+  </div>
+  <div class="footer">
+    <p>Hosted by GitHub.</p>
+  </div>
+</div>
+</body>
 </html>
