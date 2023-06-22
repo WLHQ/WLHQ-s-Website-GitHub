@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html<!DOCTYPE html>
 <html>
 <head>
   <title>Home</title>
@@ -10,7 +11,7 @@
     }
 
     .container {
-      width: 1000px;
+      width: 1200px; /* Increased width for better visibility */
       margin: auto;
     }
 
@@ -23,7 +24,7 @@
 
     .main {
       padding-top: 20px;
-      padding-bottom: 50px;
+      padding-bottom: 20px; /* Reduced vertical padding for less scrolling */
     }
 
     .footer {
@@ -35,7 +36,7 @@
       color: white;
       padding: 20px;
       border-radius: 6px;
-      font-size: 20px;
+      font-size: 24px; /* Increased font size for better visibility */
       font-weight: bold;
       position: relative;
       overflow: hidden;
@@ -59,32 +60,23 @@
     }
   </style>
   <script>
-
     // Check if the device is a Fire TV
     function isFireTV() {
-        // Check if the user agent contains the term "silk" or "mozilla/5.0 (aft" (for Fire TV Stick)
-        var userAgent = navigator.userAgent.toLowerCase();
-        if (userAgent.indexOf("silk") > -1 || userAgent.indexOf("mozilla/5.0 (aft") > -1) {
+      var userAgent = navigator.userAgent.toLowerCase();
+      if (userAgent.indexOf("silk") > -1 || userAgent.indexOf("mozilla/5.0 (aft") > -1) {
         return true;
-        }
-    
-        // Check if the user agent contains the term "amazonwebappplatform" (for Fire TV web apps)
-        var webAppPlatform = navigator.userAgent.toLowerCase().indexOf("amazonwebappplatform") > -1;
-    
-        // Check if the browser supports the Amazon Web App API (for Fire TV web apps)
-        var isAmazonWebApp = typeof window.amazonwebapps !== "undefined";
-    
-        return webAppPlatform || isAmazonWebApp;
+      }
+      var webAppPlatform = navigator.userAgent.toLowerCase().indexOf("amazonwebappplatform") > -1;
+      var isAmazonWebApp = typeof window.amazonwebapps !== "undefined";
+      return webAppPlatform || isAmazonWebApp;
     }
     
     // Usage example
     if (isFireTV()) {
-        // Code to execute if the user is browsing with a Fire TV device
-        console.log("User is browsing with a Fire TV device");
-        alert('Welcome Fire TV user! You can use your Fire TV Remote to navigate the website using the directional and select buttons. Press OK to continue.')
+      console.log("User is browsing with a Fire TV device");
+      alert('Welcome Fire TV user! You can use your Fire TV Remote to navigate the website using the directional and select buttons. Press OK to continue.')
     } else {
-        // Code to execute for other devices
-        console.log("User is not browsing with a Fire TV device");
+      console.log("User is not browsing with a Fire TV device");
     }
 
     // Function to update the current date and time
@@ -106,17 +98,17 @@
     // Function to resize the text based on the window width
     function resizeText() {
       var screenWidth = window.innerWidth;
-      var scaleFactor = screenWidth / 700; // Adjust this value as needed
+      var scaleFactor = screenWidth / 800; // Adjust this value as needed for optimal scaling
 
       // Apply the scaling factor to the desired elements
       var headings = document.querySelectorAll("h1");
       for (var i = 0; i < headings.length; i++) {
-        headings[i].style.fontSize = 35 * scaleFactor + "px";
+        headings[i].style.fontSize = 40 * scaleFactor + "px";
       }
 
       var paragraphs = document.querySelectorAll("p");
       for (var i = 0; i < paragraphs.length; i++) {
-        paragraphs[i].style.fontSize = 14 * scaleFactor + "px";
+        paragraphs[i].style.fontSize = 16 * scaleFactor + "px";
       }
     }
 
@@ -142,11 +134,10 @@
   </div>
   <div class="main">
     <p>Navigation Tools:</p>
-    <button class="button" onclick="location.reload()">Reload this page.</button>
-    <button class="button" onclick="window.close()">Close This Page.</button>
+    <button class="button" onclick="location.reload()">Reload this page</button>
+    <button class="button" onclick="window.close()">Close This Page</button>
     <p>Page Sections:</p>
     <p>Games:</p>
-    <a href="https://wlhq.github.io/WLHQ-s-Website-GitHub/test.html"><button class="button">Test</button></a>
     <a href="https://status.epicgames.com/"><button class="button">Epic Games Status</button></a>
     <p>Music:</p>
     <a href="https://youtune.kvnp.eu/"><button class="button">YouTune - Home</button></a>
@@ -160,7 +151,7 @@
   <div class="footer">
     <p>Hosted by GitHub.</p>
     <div id="wcb" class="carbonbadge wcb-d"></div>
-<script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+    <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
   </div>
 </div>
 </body>
