@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WLHQ's Website</title>
+    <meta name="description" content="This is my website description.">
+    <style>
+    body {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+    }
+
+    .centered-text {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    /* Define different font sizes based on screen width */
+    @media (max-width: 600px) {
+        .centered-text {
+            font-size: 18px;
+        }
+    }
+
+    @media (min-width: 601px) {
+        .centered-text {
+            font-size: 24px;
+        }
+    }
+
+    button {
+        background-color: #7289DA;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+
+    button:hover {
+        box-shadow: inset 0 0 0 2px red;
+        animation-name: fade;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes fade {
+        0% {
+            box-shadow: inset 0 0 0 2px rgba(255,0,0,0.5);
+        }
+        
+        50% {
+            box-shadow: inset 0 0 0 2px rgba(255,0,0,1.0);
+        }
+        
+        100% {
+            box-shadow: inset 0 0 0 2px rgba(255,0,0,0.5);
+        }
+    }
+    </style>
+    <script>
+        // Function to update the current date and time
+        function updateDateTime() {
+            var dateElement = document.getElementById("date");
+            var timeElement = document.getElementById("time");
+
+            var currentDate = new Date();
+
+            // Format the date and time as desired
+            var date = currentDate.toDateString();
+            var time = currentDate.toLocaleTimeString();
+
+            // Update the HTML elements with the current date and time
+            dateElement.textContent = "Current Date: " + date;
+            timeElement.textContent = "Current Time: " + time;
+        }
+        // Call the resizeText function on page load and whenever the window is resized
+        window.addEventListener("load", function () {
+            updateDateTime();
+        });
+
+        // Update the date and time every second
+        setInterval(updateDateTime, 1000);
+    </script>
+</head>
+<body>
+    <div class="centered-text">
+        <h1>WLHQ's Website</h1>
+        <p>Welcome to my website!</p>
+        <p id="date">Fetching Current Date...</p>
+        <p id="time">Fetching Current Time...</p>
+    </div>
+    <button class="button" onclick="location.reload()">Reload this page</button>
+    <button class="button" onclick="window.close()">Close This Page</button>
+</body>
+</html>
