@@ -14,6 +14,10 @@
         margin: 0;
         flex-direction: column;
     }
+    
+    .footer {
+      text-align: center;
+    }
 
     .centered-text {
         text-align: center;
@@ -22,16 +26,43 @@
         margin-bottom: 20px;
     }
 
-    /* Define different font sizes based on screen width */
-    @media (max-width: 600px) {
+    /* TV screen */
+    @media (min-width: 1200px) {
         .centered-text {
+            font-size: 36px;
+        }
+        .button {
+            font-size: 24px;
+        }
+    }
+
+    /* Computer screen */
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .centered-text {
+            font-size: 28px;
+        }
+        .button {
+            font-size: 20px;
+        }
+    }
+
+    /* Tablet screen or larger cellphone */
+    @media (min-width: 600px) and (max-width: 991px) {
+        .centered-text {
+            font-size: 22px;
+        }
+        .button {
             font-size: 18px;
         }
     }
 
-    @media (min-width: 601px) {
+    /* Smaller cellphone */
+    @media (max-width: 599px) {
         .centered-text {
-            font-size: 24px;
+            font-size: 18px;
+        }
+        .button {
+            font-size: 16px;
         }
     }
 
@@ -43,7 +74,6 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 12px;
@@ -104,5 +134,10 @@
     </div>
     <button class="button" onclick="location.reload()">Reload this page</button>
     <button class="button" onclick="window.close()">Close This Page</button>
+    <div class="footer">
+        <p>Hosted by GitHub.</p>
+        <div id="wcb" class="carbonbadge wcb-d"></div>
+        <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+      </div>
 </body>
 </html>
