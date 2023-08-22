@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #2f3136;
+      color: white;
+    }
+
+    .container {
+      width: 1200px; /* Increased width for better visibility */
+      margin: auto;
+    }
+
+    .header {
+      background-color: #202225;
+      text-align: center;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    .main {
+      padding-top: 0px;
+      padding-bottom: 0px; /* Reduced vertical padding for less scrolling */
+    }
+
+    .footer {
+      text-align: center;
+    }
+
+    .button {
+      background-color: #3762ff;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 32px; /* Increased font size for better visibility */
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .button:hover::after {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    // Check if the device is a Fire TV
+    function isFireTV() {
+      var userAgent = navigator.userAgent.toLowerCase();
+      if (userAgent.indexOf("silk") > -1 || userAgent.indexOf("mozilla/5.0 (aft") > -1) {
+        return true;
+      }
+      var webAppPlatform = navigator.userAgent.toLowerCase().indexOf("amazonwebappplatform") > -1;
+      var isAmazonWebApp = typeof window.amazonwebapps !== "undefined";
+      return webAppPlatform || isAmazonWebApp;
+    }
+    
+    // Usage example
+    if (isFireTV()) {
+      console.log("User is browsing with a Fire TV device");
+      alert('Welcome Fire TV user! You can use your Fire TV Remote to navigate the website using the directional and select buttons. Press OK to continue.')
+    } else {
+      console.log("User is not browsing with a Fire TV device");
+    }
+
+    // Function to update the current date and time
+    function updateDateTime() {
+      var dateElement = document.getElementById("date");
+      var timeElement = document.getElementById("time");
+
+      var currentDate = new Date();
+
+      // Format the date and time as desired
+      var date = currentDate.toDateString();
+      var time = currentDate.toLocaleTimeString();
+
+      // Update the HTML elements with the current date and time
+      dateElement.textContent = "Current Date: " + date;
+      timeElement.textContent = "Current Time: " + time;
+    }
+
+    // Function to resize the text based on the window width
+    function resizeText() {
+      var screenWidth = window.innerWidth;
+      var scaleFactor = screenWidth / 800; // Adjust this value as needed for optimal scaling
+
+      // Apply the scaling factor to the desired elements
+      var headings = document.querySelectorAll("h1");
+      for (var i = 0; i < headings.length; i++) {
+        headings[i].style.fontSize = 45 * scaleFactor + "px";
+      }
+
+      var paragraphs = document.querySelectorAll("p");
+      for (var i = 0; i < paragraphs.length; i++) {
+        paragraphs[i].style.fontSize = 20 * scaleFactor + "px";
+      }
+    }
+
+    // Call the resizeText function on page load and whenever the window is resized
+    window.addEventListener("load", function () {
+      updateDateTime();
+      resizeText();
+    });
+
+    window.addEventListener("resize", resizeText);
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+  </script>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Home</h1>
+    <p>Welcome to WLHQ's lightweight website on GitHub!</p>
+    <p id="date">Fetching Current Date...</p>
+    <p id="time">Fetching Current Time...</p>
+  </div>
+  <div class="main">
+    <p>Navigation Tools:</p>
+    <button class="button" onclick="location.reload()">Reload this page</button>
+    <button class="button" onclick="window.close()">Close This Page</button>
+    <a href="New.html"><button class="button">New Homepage ( Currently In Testing )</button></a>
+    <p>Page Sections:</p>
+    <p>Games:</p>
+    <a href="https://status.epicgames.com/"><button class="button">Epic Games Status</button></a>
+    <p>Music:</p>
+    <a href="https://youtune.kvnp.eu/"><button class="button">YouTune - Home</button></a>
+    <a href="https://lofimusic.app/lofigirl"><button class="button">Lofi Music</button></a>
+    <p>Utilities:</p>
+    <a href="https://githubstat.us/"><button class="button">GitHub Status</button></a>
+    <p>Screensavers:</p>
+    <a href="https://1j01.github.io/pipes/"><button class="button">Windows 3D Pipes Screensaver</button></a>
+    <a href="https://dvdscreensaver.online/"><button class="button">DVD Screensaver</button></a>
+  </div>
+  <div class="footer">
+    <p>Hosted by GitHub.</p>
+    <div id="wcb" class="carbonbadge wcb-d"></div>
+    <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+  </div>
+</div>
+</body>
+</html>
